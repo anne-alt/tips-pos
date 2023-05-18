@@ -1,4 +1,6 @@
 class ReceiptsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
   # GET /receipts
@@ -36,7 +38,7 @@ class ReceiptsController < ApplicationController
 private
 
   def receipt_params
-    params.permit(:total, :cash, :mpesa, :quantity)
+    params.permit(:total, :cash, :mpesa, :quantity, :product_id, :user_id)
   end
 
   def find_receipt

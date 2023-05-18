@@ -1,10 +1,12 @@
 class ProductsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
   # GET /products
   def index
     products = Product.all
-    render json: product
+    render json: products
   end
 
   # POST /products
@@ -36,7 +38,7 @@ class ProductsController < ApplicationController
 private
 
   def product_params
-    params.permit(:name, :size, :quantity, :category)
+    params.permit(:name, :size, :quantity, :category, :selling_price)
   end
 
   def find_product
