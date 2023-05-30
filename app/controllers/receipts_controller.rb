@@ -38,7 +38,7 @@ class ReceiptsController < ApplicationController
 private
 
   def receipt_params
-    params.permit(:total, :cash, :mpesa, :quantity, :product_id, :user_id)
+    params.permit(:total, :cash, :mpesa, :quantity, :product_id, :user_id, :customer_name)
   end
 
   def find_receipt
